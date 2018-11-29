@@ -7,7 +7,7 @@ public class CrazyPiece {
     String alcunha;
     int posX;
     int posY;
-    boolean capture_status;
+    boolean capture_status = true;
 
 
     public CrazyPiece(int ID_peca, int ID_tipoPeca, int ID_equipa, String alcunha) {
