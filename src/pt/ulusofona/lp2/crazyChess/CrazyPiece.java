@@ -23,8 +23,16 @@ public class CrazyPiece {
 
     }
 
+    public int getID_tipoPeca() {
+        return ID_tipoPeca;
+    }
+
+    public int getID_equipa() {
+        return ID_equipa;
+    }
+
     public String getImagePNG() {
-        if(ID_equipa == 1) {
+        if(ID_equipa == 0) {
             return "pecas_pretas.png";
         } else {
             return "pecas_brancas.png";
@@ -32,20 +40,37 @@ public class CrazyPiece {
     }
 
     public String toString() {
-        if(capture_status == false) {
+        if(!capture_status) {
             return ID_peca + " | " + ID_tipoPeca + " | " + ID_equipa + " | " + alcunha + " @ " + "(" + posX + ", " + posY + ")";
         } else {
             return ID_peca + " | " + ID_tipoPeca + " | " + ID_equipa + " | " + alcunha + " @ (n/a)";
         }
     }
 
-    void setPos(int x, int y) {
+    void changePos(int x, int y) {
         this.posX = x;
         this.posY = y;
+    }
 
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
     }
 
     boolean getCaptureStatus() {
         return capture_status;
+    }
+
+    void changeCapture_status(int newStatus) {
+        if(newStatus == 1) {
+            posX = -1;
+            posY = -1;
+            capture_status = true;
+        } else {
+            capture_status = false;
+        }
     }
 }
