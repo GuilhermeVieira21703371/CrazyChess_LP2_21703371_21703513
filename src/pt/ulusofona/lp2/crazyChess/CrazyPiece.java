@@ -1,38 +1,38 @@
 package pt.ulusofona.lp2.crazyChess;
 
 public class CrazyPiece {
-    int ID_peca;
-    int ID_tipoPeca;
-    int ID_equipa;
+    int idPeca;
+    int idTipopeca;
+    int idEquipa;
     String alcunha;
     int posX;
     int posY;
-    boolean capture_status = true;
+    boolean captureStatus = true;
 
 
-    public CrazyPiece(int ID_peca, int ID_tipoPeca, int ID_equipa, String alcunha) {
-        this.ID_peca = ID_peca;
-        this.ID_tipoPeca = ID_tipoPeca;
-        this.ID_equipa = ID_equipa;
+    public CrazyPiece(int idPeca, int idTipopeca, int idEquipa, String alcunha) {
+        this.idPeca = idPeca;
+        this.idTipopeca = idTipopeca;
+        this.idEquipa = idEquipa;
         this.alcunha = alcunha;
     }
 
 
     public int getId() {
-        return ID_peca;
+        return idPeca;
 
     }
 
-    public int getID_tipoPeca() {
-        return ID_tipoPeca;
+    public int getIdTipopeca() {
+        return idTipopeca;
     }
 
-    public int getID_equipa() {
-        return ID_equipa;
+    public int getIdEquipa() {
+        return idEquipa;
     }
 
     public String getImagePNG() {
-        if(ID_equipa == 0) {
+        if(idEquipa == 0) {
             return "pecas_pretas.png";
         } else {
             return "pecas_brancas.png";
@@ -40,10 +40,10 @@ public class CrazyPiece {
     }
 
     public String toString() {
-        if(!capture_status) {
-            return ID_peca + " | " + ID_tipoPeca + " | " + ID_equipa + " | " + alcunha + " @ " + "(" + posX + ", " + posY + ")";
+        if(!captureStatus) {
+            return idPeca + " | " + idTipopeca + " | " + idEquipa + " | " + alcunha + " @ " + "(" + posX + ", " + posY + ")";
         } else {
-            return ID_peca + " | " + ID_tipoPeca + " | " + ID_equipa + " | " + alcunha + " @ (n/a)";
+            return idPeca + " | " + idTipopeca + " | " + idEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 
@@ -61,16 +61,16 @@ public class CrazyPiece {
     }
 
     boolean getCaptureStatus() {
-        return capture_status;
+        return captureStatus;
     }
 
-    void changeCapture_status(int newStatus) {
+    void changeCaptureStatus(int newStatus) {
         if(newStatus == 1) {
             posX = -1;
             posY = -1;
-            capture_status = true;
+            captureStatus = true;
         } else {
-            capture_status = false;
+            captureStatus = false;
         }
     }
 }

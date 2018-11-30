@@ -48,12 +48,12 @@ public class Simulador {
 
                 if (linhasLidas > 1 && linhasLidas <= nmrPecas + 1) {
 
-                    int ID_peca = Integer.parseInt(dados[0]);
-                    int ID_tipoPeca = Integer.parseInt(dados[1]);
-                    int ID_equipa = Integer.parseInt(dados[2]);
+                    int idPeca = Integer.parseInt(dados[0]);
+                    int idTipopeca = Integer.parseInt(dados[1]);
+                    int idEquipa = Integer.parseInt(dados[2]);
                     String alcunha = dados[3];
 
-                    CrazyPiece pecaMaluca = new CrazyPiece(ID_peca, ID_tipoPeca, ID_equipa, alcunha);
+                    CrazyPiece pecaMaluca = new CrazyPiece(idPeca, idTipopeca, idEquipa, alcunha);
                     listaPecas.add(pecaMaluca);
 
                 } else if (linhasLidas == 0) {
@@ -72,7 +72,7 @@ public class Simulador {
                             for (CrazyPiece pecaMaluca : listaPecas) {
                                 if (tempData == pecaMaluca.getId()) {
                                     pecaMaluca.changePos(i, boardCount);
-                                    pecaMaluca.changeCapture_status(0);
+                                    pecaMaluca.changeCaptureStatus(0);
                                 }
                             }
                         }
@@ -103,7 +103,7 @@ public class Simulador {
             int posX = pecaMaluca.getPosX();
             int posY = pecaMaluca.getPosY();
             if(posX == xO && posY == yO) {
-                int tempTeamID = pecaMaluca.getID_equipa();
+                int tempTeamID = pecaMaluca.getIdEquipa();
                 if(tempTeamID == getIDEquipaAJogar() ) {// Verificação da equipa da peça selecionada
                     int tempID = pecaMaluca.getId();
                     pieceIDO = tempID; // no caso de existir efetivamente uma peça na origem, guarda-se o ID da peça numa variável dentro do método
@@ -124,7 +124,7 @@ public class Simulador {
             int posX = pecaMaluca.getPosX();
             int posY = pecaMaluca.getPosY();
             if(posX == xD && posY == Yd) {
-                int tempTeamID = pecaMaluca.getID_equipa();
+                int tempTeamID = pecaMaluca.getIdEquipa();
                 if(tempTeamID == getIDEquipaAJogar()) {
                     if(getIDEquipaAJogar() == 0) {
                         nmrJogadasIVPretas++;
@@ -166,7 +166,7 @@ public class Simulador {
             tabuleiro[yO][xO] = 0;
             CrazyPiece pecamalucaDest = getPiece(pieceIDD);
             if(pecamalucaDest != null) {
-                pecamalucaDest.changeCapture_status(1);
+                pecamalucaDest.changeCaptureStatus(1);
                 if(getIDEquipaAJogar() == 0) {
                     nmrCapPretas++;
                     nmrCapturas++;
@@ -203,8 +203,8 @@ public class Simulador {
         int nmrReisBrancos = 0;
         int nmrReisPretos = 0;
         for(CrazyPiece pecaMaluca : listaPecas) {
-            int id_equipaPeca = pecaMaluca.getID_equipa();
-            int id_tipo = pecaMaluca.getID_tipoPeca();
+            int id_equipaPeca = pecaMaluca.getIdEquipa();
+            int id_tipo = pecaMaluca.getIdTipopeca();
             boolean capture_status = pecaMaluca.getCaptureStatus();
             if(id_tipo == 0 && id_equipaPeca== 0 && !capture_status) {
                 nmrReisPretos++;
