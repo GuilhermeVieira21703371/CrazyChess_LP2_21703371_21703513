@@ -2,11 +2,9 @@ package pt.ulusofona.lp2.crazyChess;
 
 import java.util.ArrayList;
 import org.junit.Test;
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-
+import static org.junit.Assert.assertEquals;
 public class SimuladorTest {
     @Test
     public void test1() {

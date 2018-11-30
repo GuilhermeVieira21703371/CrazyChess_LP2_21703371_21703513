@@ -9,6 +9,9 @@ public class CrazyPiece {
     int posY;
     boolean captureStatus = true;
 
+    public CrazyPiece() {
+        }
+
 
     public CrazyPiece(int idPeca, int idTipopeca, int idEquipa, String alcunha) {
         this.idPeca = idPeca;
