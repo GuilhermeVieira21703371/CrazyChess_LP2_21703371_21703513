@@ -1,4 +1,4 @@
-/*package pt.ulusofona.lp2.crazyChess;
+package pt.ulusofona.lp2.crazyChess;
 
 
 import org.junit.Test;
@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import java.util.ArrayList;
 
-public class SimuladorTest {
+public class TestSimulador {
     @Test
     public void test1() {
         Simulador novoJogo = new Simulador();
@@ -68,4 +68,3 @@ public class SimuladorTest {
         assertEquals(0,peca1.posY);
     }
 }
-*/
