@@ -26,6 +26,10 @@ public class CrazyPiece {
 
     }
 
+    public String getAlcunha(){
+        return alcunha;
+    }
+
     public int getIdTipopeca() {
         return idTipopeca;
     }
