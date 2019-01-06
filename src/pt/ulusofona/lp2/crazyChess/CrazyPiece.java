@@ -1,6 +1,6 @@
 package pt.ulusofona.lp2.crazyChess;
 
-public class CrazyPiece {
+public abstract class  CrazyPiece {
     int idPeca;
     int idTipopeca;
     int idEquipa;
@@ -8,16 +8,18 @@ public class CrazyPiece {
     int posX;
     int posY;
     boolean captureStatus = true;
+    int[][] tabuleiro;
 
     public CrazyPiece() {
         }
 
 
-    public CrazyPiece(int idPeca, int idTipopeca, int idEquipa, String alcunha) {
+    public CrazyPiece(int idPeca, int idTipopeca, int idEquipa, String alcunha, int[][] tabuleiro) {
         this.idPeca = idPeca;
         this.idTipopeca = idTipopeca;
         this.idEquipa = idEquipa;
         this.alcunha = alcunha;
+        this.tabuleiro = tabuleiro;
     }
 
 
@@ -39,7 +41,7 @@ public class CrazyPiece {
     }
 
     public String getImagePNG() {
-        if(idEquipa == 0) {
+        if(idEquipa == 10) {
             return "pecas_pretas.png";
         } else {
             return "pecas_brancas.png";
@@ -80,4 +82,11 @@ public class CrazyPiece {
             captureStatus = false;
         }
     }
+
+    public abstract boolean confirmMove(int xO,int yO,int xD,int yD);
+
+
+    public
+
+
 }

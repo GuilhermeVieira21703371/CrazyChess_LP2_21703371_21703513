@@ -11,40 +11,28 @@ public class Joker extends CrazyPiece{
 
     public void changeJokerId(int currentTurn) {
 
-
-        int newID;
-        for(int i = 5; i > 1; i--) {
-
-        }
-
-        switch (newID) {
-            case 1:   = "January";
+        switch (currentTurn) {
+            case 0: jokerID = 0;
                 break;
-            case 2:  monthString = "February";
+            case 1:  jokerID = 1;
                 break;
-            case 3:  monthString = "March";
+            case 2: jokerID = 2;
                 break;
-            case 4:  monthString = "April";
+            case 3: jokerID = 3;
                 break;
-            case 5:  monthString = "May";
+            case 4: jokerID = 4;
                 break;
-            case 6:  monthString = "June";
+            case 5: jokerID = 5;
                 break;
-            case 7:  monthString = "July";
+            case 6: jokerID = 6;
                 break;
-            case 8:  monthString = "August";
-                break;
-            case 9:  monthString = "September";
-                break;
-            case 10: monthString = "October";
-                break;
-            case 11: monthString = "November";
-                break;
-            case 12: monthString = "December";
-                break;
-            default: monthString = "Invalid month";
+            default:
                 break;
         }
+
+    }
+    @Override
+    public boolean confirmMove(int xO,int yO,int xD,int yD) {
 
     }
 
