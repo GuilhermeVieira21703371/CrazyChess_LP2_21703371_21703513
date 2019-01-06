@@ -55,17 +55,48 @@ public class Simulador {
                     int idEquipa = Integer.parseInt(dados[2]);
                     String alcunha = dados[3];
 
-                    CrazyPiece pecaMaluca = new CrazyPiece(idPeca, idTipopeca, idEquipa, alcunha);
-                    listaPecas.add(pecaMaluca);
-
+                    if(idTipopeca==0){
+                        Rei rei = new Rei(idPeca,idTipopeca,idEquipa,alcunha);
+                        listaPecas.add(rei);
+                    }
+                    if(idTipopeca==1){
+                        Rainha rainha = new Rainha(idPeca,idTipopeca,idEquipa,alcunha);
+                        listaPecas.add(rainha);
+                    }
+                    if(idTipopeca==2){
+                        PoneiMagico poneiMagico = new PoneiMagico(idPeca,idTipopeca,idEquipa,alcunha);
+                        listaPecas.add(poneiMagico);
+                    }
+                    if(idTipopeca==3){
+                        PadreDaVila padreDaVila = new PadreDaVila(idPeca,idTipopeca,idEquipa,alcunha);
+                        listaPecas.add(padreDaVila);
+                    }
+                    if(idTipopeca==4){
+                        TorreHor torreHor = new TorreHor(idPeca,idTipopeca,idEquipa,alcunha);
+                        listaPecas.add(torreHor);
+                    }
+                    if(idTipopeca==5){
+                        TorreVer torreVer = new TorreVer(idPeca,idTipopeca,idEquipa,alcunha);
+                        listaPecas.add(torreVer);
+                    }
+                    if(idTipopeca==6){
+                        Lebre lebre = new Lebre(idPeca,idTipopeca,idEquipa,alcunha);
+                        listaPecas.add(lebre);
+                    }
+                    if(idTipopeca==7){
+                        Joker joker = new Joker(idPeca,idTipopeca,idEquipa,alcunha);
+                        listaPecas.add(joker);
+                    }
+                    linhasLidas++;
                 } else if (linhasLidas == 0) {
                     tamanhoTabuleiro = Integer.parseInt(dados[0]);
                     tabuleiro = new int[tamanhoTabuleiro][tamanhoTabuleiro];
-
+                    linhasLidas++;
                 } else if (linhasLidas == 1) {
                     nmrPecas = Integer.parseInt(dados[0]);
-
-                } else {
+                    linhasLidas++;
+                }
+                else {
 
                     for (int i = 0; i < tamanhoTabuleiro; i++) {
                         int tempData = Integer.parseInt(dados[i]);
@@ -74,11 +105,10 @@ public class Simulador {
                             for (CrazyPiece pecaMaluca : listaPecas) {
                                 if (tempData == pecaMaluca.getId()) {
                                     pecaMaluca.changePos(i, boardCount);
-                                    pecaMaluca.changeCaptureStatus(0);
+                                    pecaMaluca.changeCaptureStatus( 0);
                                 }
                             }
                         }
-
                     }
                     boardCount++;
                     }
@@ -89,7 +119,6 @@ public class Simulador {
         } catch (FileNotFoundException exception) {
             return false;
         }
-
     }
 
     public boolean gravarJogo(File ficheiroDestino) {
