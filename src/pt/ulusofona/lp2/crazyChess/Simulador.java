@@ -1,4 +1,6 @@
 package pt.ulusofona.lp2.crazyChess;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -89,6 +91,70 @@ public class Simulador {
         }
 
     }
+
+    public boolean gravarJogo(File ficheiroDestino) {
+
+        String newLine = System.getProperty("line.separator");
+        try {
+            File output=new File("teste.txt");
+            FileWriter writer=new FileWriter(output);
+
+            writer.write(tamanhoTabuleiro + "");
+            writer.write(newLine);
+            writer.write(getPecasMalucas().size() + "");
+            writer.write(newLine);
+
+            for (CrazyPiece p : getPecasMalucas()) {
+                String peca=p.getId() + ":" + p.getIdTipopeca() + ":" + p.getIdEquipa() + ":" + p.getAlcunha();
+                writer.write(peca);
+                writer.write(newLine);
+            }
+
+            ArrayList<Integer> pecas=new ArrayList<>();
+            for (int i=0; i < tamanhoTabuleiro; i++) {
+                for (int j=0; j < tamanhoTabuleiro; j++) {
+                    if (tabuleiro[i][j] == 0) {
+                        pecas.add(0);
+                    } else {
+                        pecas.add(tabuleiro[i][j]);
+                    }
+                }
+
+                for (int b=0; b < tamanhoTabuleiro * 2; b++) {
+                    for (int a=0; a < tamanhoTabuleiro; a++) {
+                        String memoriaGravar="";
+                        memoriaGravar+=pecas.get(a);
+                        memoriaGravar+=":";
+                        writer.write(memoriaGravar);
+                    }
+                    writer.write(newLine);
+                }
+            }
+            String memoriaGravar="";
+            if(turno%2==0){
+                memoriaGravar += "20";
+            }
+            else{
+                memoriaGravar += "10";
+            }
+            memoriaGravar += ":";
+            memoriaGravar += nmrJogadasVPretas + ":";
+            memoriaGravar += nmrCapPretas + ";";
+            memoriaGravar += nmrJogadasIVPretas + ":";
+            memoriaGravar += nmrJogadasVBrancas + ":";
+            memoriaGravar += nmrCapBrancas + ";";
+            memoriaGravar += nmrJogadasIVBrancas + ":";
+
+        }
+        catch(IOException e) {
+            System.out.println("Ocorreu um erro.");
+            return false;
+        }
+        return true;
+    }
+
+
+
 
     public int getTamanhoTabuleiro() {
         return tamanhoTabuleiro;
