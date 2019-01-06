@@ -9,6 +9,12 @@ public class Lebre extends CrazyPiece {
 
     @Override
     public boolean confirmMove(int xO, int yO, int xD, int yD) {
-        return true;
+        if(idEquipa == 10) {
+            if((xD == xO -1 && yD == yO -1) || (xD == xO +1 && yD == yO +1) || (xD == xO +1 && yD == yO -1) || (xD == xO -1 && yD == yO +1)) {
+                return true;
+            }
+        }
+        return false;
+
     }
 }
