@@ -11,6 +11,7 @@ public class Simulador {
     int[][] tabuleiro;
     List<CrazyPiece> listaPecas;
     int turno;
+    int idEquipaAtual;
     int nmrCapBrancas;
     int nmrCapPretas;
     int nmrJogadasVBrancas;
@@ -97,8 +98,7 @@ public class Simulador {
                     nmrPecas = Integer.parseInt(dados[0]);
                     linhasLidas++;
                 }
-                else {
-
+                else if(linhasLidas<=nmrPecas+tamanhoTabuleiro){
                     for (int i = 0; i < tamanhoTabuleiro; i++) {
                         int tempData = Integer.parseInt(dados[i]);
                         tabuleiro[boardCount][i] = tempData;
@@ -112,9 +112,18 @@ public class Simulador {
                         }
                     }
                     boardCount++;
-                    }
-                linhasLidas++;
-            }
+					linhasLidas++;
+            }else{
+					idEquipaAtual=Integer.parseInt(dados[0]);
+                	nmrJogadasVPretas=Integer.parseInt(dados[1]);
+					nmrCapPretas=Integer.parseInt(dados[2]);
+					nmrJogadasIVPretas=Integer.parseInt(dados[3]);
+					nmrJogadasVBrancas=Integer.parseInt(dados[4]);
+					nmrCapBrancas=Integer.parseInt(dados[5]);
+					nmrJogadasIVBrancas=Integer.parseInt(dados[6]);
+				}
+
+			}
             leitorFicheiro.close();
             return true;
         } catch (FileNotFoundException exception) {
