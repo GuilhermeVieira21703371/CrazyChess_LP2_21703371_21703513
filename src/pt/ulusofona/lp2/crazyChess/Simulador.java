@@ -434,5 +434,7 @@ public class Simulador {
         return null;
     }
 
+    public void anularJogadaAnterior(){
 
+    }
 }
