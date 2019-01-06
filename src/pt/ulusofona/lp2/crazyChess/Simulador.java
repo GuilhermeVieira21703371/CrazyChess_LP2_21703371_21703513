@@ -85,7 +85,7 @@ public class Simulador {
                         listaPecas.add(lebre);
                     }
                     if(idTipopeca==7){
-                        Joker joker = new Joker(idPeca,idTipopeca,idEquipa,alcunha,,tamanhoTabuleiro);
+                        Joker joker = new Joker(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(joker);
                     }
                     linhasLidas++;
