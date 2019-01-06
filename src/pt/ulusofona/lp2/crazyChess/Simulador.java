@@ -11,6 +11,7 @@ public class Simulador {
     int[][] tabuleiro;
     List<CrazyPiece> listaPecas;
     int turno;
+    int idEquipaAtual;
     int nmrCapBrancas;
     int nmrCapPretas;
     int nmrJogadasVBrancas;
@@ -56,35 +57,35 @@ public class Simulador {
                     String alcunha = dados[3];
 
                     if(idTipopeca==0){
-                        Rei rei = new Rei(idPeca,idTipopeca,idEquipa,alcunha);
+                        Rei rei = new Rei(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(rei);
                     }
                     if(idTipopeca==1){
-                        Rainha rainha = new Rainha(idPeca,idTipopeca,idEquipa,alcunha);
+                        Rainha rainha = new Rainha(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(rainha);
                     }
                     if(idTipopeca==2){
-                        PoneiMagico poneiMagico = new PoneiMagico(idPeca,idTipopeca,idEquipa,alcunha);
+                        PoneiMagico poneiMagico = new PoneiMagico(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(poneiMagico);
                     }
                     if(idTipopeca==3){
-                        PadreDaVila padreDaVila = new PadreDaVila(idPeca,idTipopeca,idEquipa,alcunha);
+                        PadreDaVila padreDaVila = new PadreDaVila(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(padreDaVila);
                     }
                     if(idTipopeca==4){
-                        TorreHor torreHor = new TorreHor(idPeca,idTipopeca,idEquipa,alcunha);
+                        TorreHor torreHor = new TorreHor(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(torreHor);
                     }
                     if(idTipopeca==5){
-                        TorreVer torreVer = new TorreVer(idPeca,idTipopeca,idEquipa,alcunha);
+                        TorreVer torreVer = new TorreVer(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(torreVer);
                     }
                     if(idTipopeca==6){
-                        Lebre lebre = new Lebre(idPeca,idTipopeca,idEquipa,alcunha);
+                        Lebre lebre = new Lebre(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(lebre);
                     }
                     if(idTipopeca==7){
-                        Joker joker = new Joker(idPeca,idTipopeca,idEquipa,alcunha);
+                        Joker joker = new Joker(idPeca,idTipopeca,idEquipa,alcunha,,tamanhoTabuleiro);
                         listaPecas.add(joker);
                     }
                     linhasLidas++;
@@ -96,8 +97,7 @@ public class Simulador {
                     nmrPecas = Integer.parseInt(dados[0]);
                     linhasLidas++;
                 }
-                else {
-
+                else if(linhasLidas<=nmrPecas+tamanhoTabuleiro){
                     for (int i = 0; i < tamanhoTabuleiro; i++) {
                         int tempData = Integer.parseInt(dados[i]);
                         tabuleiro[boardCount][i] = tempData;
@@ -111,9 +111,18 @@ public class Simulador {
                         }
                     }
                     boardCount++;
-                    }
-                linhasLidas++;
-            }
+					linhasLidas++;
+            }else{
+					idEquipaAtual=Integer.parseInt(dados[0]);
+                	nmrJogadasVPretas=Integer.parseInt(dados[1]);
+					nmrCapPretas=Integer.parseInt(dados[2]);
+					nmrJogadasIVPretas=Integer.parseInt(dados[3]);
+					nmrJogadasVBrancas=Integer.parseInt(dados[4]);
+					nmrCapBrancas=Integer.parseInt(dados[5]);
+					nmrJogadasIVBrancas=Integer.parseInt(dados[6]);
+				}
+
+			}
             leitorFicheiro.close();
             return true;
         } catch (FileNotFoundException exception) {
