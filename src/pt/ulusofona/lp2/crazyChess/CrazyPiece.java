@@ -5,21 +5,24 @@ public abstract class  CrazyPiece {
     int idTipopeca;
     int idEquipa;
     String alcunha;
+    String tipo;
     int posX;
     int posY;
     boolean captureStatus = true;
     int[][] tabuleiro;
+    int tamanhoTabuleiro;
 
     public CrazyPiece() {
         }
 
 
-    public CrazyPiece(int idPeca, int idTipopeca, int idEquipa, String alcunha, int[][] tabuleiro) {
+    public CrazyPiece(int idPeca, int idTipopeca, int idEquipa, String alcunha, int[][] tabuleiro, int tamanhoTabuleiro) {
         this.idPeca = idPeca;
         this.idTipopeca = idTipopeca;
         this.idEquipa = idEquipa;
         this.alcunha = alcunha;
         this.tabuleiro = tabuleiro;
+        this.tamanhoTabuleiro = tamanhoTabuleiro;
     }
 
 
@@ -84,9 +87,6 @@ public abstract class  CrazyPiece {
     }
 
     public abstract boolean confirmMove(int xO,int yO,int xD,int yD);
-
-
-    public
 
 
 }

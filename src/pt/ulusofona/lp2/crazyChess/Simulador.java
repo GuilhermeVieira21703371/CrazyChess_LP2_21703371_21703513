@@ -20,6 +20,7 @@ public class Simulador {
     int nmrTurnosSemCapturas;
     int nmrCapturas;
     String endGameState;
+    int jokerCounter;
 
 
     public Simulador() {
@@ -56,35 +57,35 @@ public class Simulador {
                     String alcunha = dados[3];
 
                     if(idTipopeca==0){
-                        Rei rei = new Rei(idPeca,idTipopeca,idEquipa,alcunha);
+                        Rei rei = new Rei(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(rei);
                     }
                     if(idTipopeca==1){
-                        Rainha rainha = new Rainha(idPeca,idTipopeca,idEquipa,alcunha);
+                        Rainha rainha = new Rainha(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(rainha);
                     }
                     if(idTipopeca==2){
-                        PoneiMagico poneiMagico = new PoneiMagico(idPeca,idTipopeca,idEquipa,alcunha);
+                        PoneiMagico poneiMagico = new PoneiMagico(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(poneiMagico);
                     }
                     if(idTipopeca==3){
-                        PadreDaVila padreDaVila = new PadreDaVila(idPeca,idTipopeca,idEquipa,alcunha);
+                        PadreDaVila padreDaVila = new PadreDaVila(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(padreDaVila);
                     }
                     if(idTipopeca==4){
-                        TorreHor torreHor = new TorreHor(idPeca,idTipopeca,idEquipa,alcunha);
+                        TorreHor torreHor = new TorreHor(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(torreHor);
                     }
                     if(idTipopeca==5){
-                        TorreVer torreVer = new TorreVer(idPeca,idTipopeca,idEquipa,alcunha);
+                        TorreVer torreVer = new TorreVer(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(torreVer);
                     }
                     if(idTipopeca==6){
-                        Lebre lebre = new Lebre(idPeca,idTipopeca,idEquipa,alcunha);
+                        Lebre lebre = new Lebre(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(lebre);
                     }
                     if(idTipopeca==7){
-                        Joker joker = new Joker(idPeca,idTipopeca,idEquipa,alcunha);
+                        Joker joker = new Joker(idPeca,idTipopeca,idEquipa,alcunha,tabuleiro,tamanhoTabuleiro);
                         listaPecas.add(joker);
                     }
                     linhasLidas++;
@@ -120,6 +121,41 @@ public class Simulador {
             return false;
         }
     }
+
+    public List<String> obterSugestoesJogada(int xO, int yO) {
+
+        int tempId = getIDPeca(xO, yO);
+        CrazyPiece tempPiece = getPiece(tempId);
+
+        int pieceId = tempPiece.getIdTipopeca();
+        List<String> listaSugestoes = new ArrayList<>();
+        switch(pieceId) {
+
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            default: break;
+
+        }
+
+        return listaSugestoes;
+
+
+        }
+
 
     public boolean gravarJogo(File ficheiroDestino) {
 
@@ -207,7 +243,7 @@ public class Simulador {
         }
 
         if(pieceIDO == 0) {
-            if(getIDEquipaAJogar() == 0) {
+            if(getIDEquipaAJogar() == 10) {
                 nmrJogadasIVPretas++;
             } else {
                 nmrJogadasIVBrancas++;
@@ -221,7 +257,7 @@ public class Simulador {
             if(posX == xD && posY == Yd) {
                 int tempTeamID = pecaMaluca.getIdEquipa();
                 if(tempTeamID == getIDEquipaAJogar()) {
-                    if(getIDEquipaAJogar() == 0) {
+                    if(getIDEquipaAJogar() == 10) {
                         nmrJogadasIVPretas++;
                     } else {
                         nmrJogadasIVBrancas++;
@@ -234,19 +270,8 @@ public class Simulador {
             }
         }
 
-        boolean confirmarJogada = confirmarNmrCasas(xO, yO, xD, Yd); // Verificação do numero de casas movido
-
-        if(!confirmarJogada) {
-            if(getIDEquipaAJogar() == 0) {
-                nmrJogadasIVPretas++;
-            } else {
-                nmrJogadasIVBrancas++;
-            }
-            return false;
-        }
-
         if(xO > tamanhoTabuleiro -1 || xO < 0 || yO > tamanhoTabuleiro -1 || yO < 0 || xD > tamanhoTabuleiro -1 || xD < 0 || Yd > tamanhoTabuleiro -1 || Yd < 0 ) { // Verificação das cordenadas de origem e destino
-            if(getIDEquipaAJogar() == 0) {
+            if(getIDEquipaAJogar() == 10) {
                 nmrJogadasIVPretas++;
             } else {
                 nmrJogadasIVBrancas++;
@@ -255,6 +280,17 @@ public class Simulador {
         }
 
         CrazyPiece pecamalucaOrig = getPiece(pieceIDO);
+        boolean confirmarJogada = pecamalucaOrig.confirmMove(xO,yO,xD,Yd);
+
+        if(!confirmarJogada) {
+            if(getIDEquipaAJogar() == 10) {
+                nmrJogadasIVPretas++;
+            } else {
+                nmrJogadasIVBrancas++;
+            }
+            return false;
+        }
+
         if(pecamalucaOrig != null) {
             pecamalucaOrig.changePos(xD, Yd);
             tabuleiro[Yd][xD] = pieceIDO;
@@ -262,7 +298,7 @@ public class Simulador {
             CrazyPiece pecamalucaDest = getPiece(pieceIDD);
             if(pecamalucaDest != null) {
                 pecamalucaDest.changeCaptureStatus(1);
-                if(getIDEquipaAJogar() == 0) {
+                if(getIDEquipaAJogar() == 10) {
                     nmrCapPretas++;
                     nmrCapturas++;
                     nmrTurnosSemCapturas = 0;
@@ -280,7 +316,7 @@ public class Simulador {
         }
 
 
-        if(getIDEquipaAJogar() == 0) {
+        if(getIDEquipaAJogar() == 10) {
             nmrJogadasVPretas++;
         } else {
             nmrJogadasVBrancas++;
@@ -301,9 +337,9 @@ public class Simulador {
             int id_equipaPeca = pecaMaluca.getIdEquipa();
             int id_tipo = pecaMaluca.getIdTipopeca();
             boolean capture_status = pecaMaluca.getCaptureStatus();
-            if(id_tipo == 0 && id_equipaPeca== 0 && !capture_status) {
+            if(id_tipo == 0 && id_equipaPeca== 10 && !capture_status) {
                 nmrReisPretos++;
-            } else if(id_tipo == 0 && id_equipaPeca == 1 && !capture_status) {
+            } else if(id_tipo == 0 && id_equipaPeca == 20 && !capture_status) {
                 nmrReisBrancos++;
             }
         }
@@ -378,20 +414,6 @@ public class Simulador {
             return 1;
         }
 
-    }
-
-    public boolean confirmarNmrCasas(int xO, int yO, int xD, int yD) {
-        if((xD - xO) == 1 || (xD - xO) == -1 || (xD -xO) == 0 ) {
-            if((yD - yO) == 1 || (yD - yO) == -1 || (yD -yO) == 0 ) {
-                return true;
-
-            } else {
-                return false;
-            }
-
-        } else {
-            return false;
-        }
     }
 
     public CrazyPiece getPiece(int id) {
